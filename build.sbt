@@ -57,22 +57,6 @@ javacOptions in compile += "-Xlint"
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
-javacOptions in compile ++= {
-  CrossVersion.partialVersion(scalaVersion.value) match {
-    case Some((2, v)) if v <= 11 =>
-      Seq("-target", "6", "-source", "6")
-    case _ =>
-      try {
-        scala.util.Properties.isJavaAtLeast("1.8")
-        Seq("-target", "8")
-      } catch {
-        case _: NumberFormatException =>
-          // if Java9
-          Nil
-      }
-  }
-}
-
 initialCommands := """
                      |import com.github.tototoshi.csv._
                    """.stripMargin
