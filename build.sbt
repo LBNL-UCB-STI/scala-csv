@@ -55,6 +55,8 @@ logBuffered := false
 
 javacOptions in compile += "-Xlint"
 
+javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
+
 javacOptions in compile ++= {
   CrossVersion.partialVersion(scalaVersion.value) match {
     case Some((2, v)) if v <= 11 =>
